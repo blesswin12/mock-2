@@ -1,0 +1,67 @@
+{
+  "name": "mock-2",
+  "version": "1.0.0",
+  "description": "SAP CAP Practical Mock Exam 02 - Sales & Customer Order Fulfillment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cds-serve"
+  },
+  "keywords": [
+    "sap",
+    "cap",
+    "c_cpe",
+    "mock-exam"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@cap-js/hana": "^3",
+    "@sap/cds": "^10.1.0",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^3.1.2",
+    "@sap/cds-dk": "^10.1.0"
+  },
+  "cds": {
+    "requires": {
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "rep": {
+              "password": "rep123",
+              "roles": [
+                "SalesRepresentative"
+              ]
+            },
+            "manager": {
+              "password": "mgr123",
+              "roles": [
+                "SalesManager"
+              ]
+            },
+            "unauthorized": {
+              "password": "guest123",
+              "roles": []
+            }
+          }
+        }
+      },
+      "[production]": {
+        "auth": {
+          "kind": "xsuaa"
+        },
+        "db": {
+          "kind": "hana",
+          "credentials": {}
+        }
+      },
+      "db": {
+        "kind": "sqlite"
+      }
+    }
+  }
+}

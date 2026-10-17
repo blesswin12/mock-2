@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "cds watch",
+      "command": "cds",
+      "args": [
+        "watch"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}
