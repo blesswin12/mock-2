@@ -3,14 +3,35 @@ const {SELECT,UPDATE} = cds.ql;
 
 module.exports = cds.service.impl(function(){
 
-    this.before(['CREATE','UPDATE'], 'OrderItems',(req)=>{
+    this.before(['CREATE','UPDATE'], 'OrderItems',async (req)=>{
         const { quantity, discountPct } = req.data;
-        if(quantity != null || req.data.quantity<1){
+        const product_ID = req.data.product_ID || req.data.product?.ID || req.data.product;
+        if (quantity == null || quantity < 1){
             req.error(400, 'Order item quantity must be at least 1.', 'quantity');
         }
 
         if(discountPct != null && (discountPct < 0 || discountPct > 30.00)){
             req.error(400, 'Discount percentage must be between 0.00% and 30.00%.', 'discountPct')
+        }
+
+        if (product_ID && quantity != null){
+            const product = await cds.tx(req).run(
+                SELECT.one.from('sales.Products')
+                .columns('ID','name','availableStock')
+                .where({ ID: product_ID })
+            )
+            if (!product) {
+            return req.error(400, 'Product Not Found.', 'product_ID');
+        }
+
+        if (Number(quantity) > Number(product.availableStock)) {
+            return req.error(
+                400,
+                `Insufficient stock for ${product.name}. ` +
+                `Available: ${product.availableStock}, requested: ${quantity}.`,
+                'quantity'
+            );
+        }
         }
     });
 
