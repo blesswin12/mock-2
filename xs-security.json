@@ -1,5 +1,50 @@
 {
-  "scopes": [],
+  "xsappname": "sales-mgmt",
+  "tenant-mode": "dedicated",
+  "description": "Security profile for Sales & Customer Order Fulfillment",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.SalesRepresentative",
+      "description": "Sales frontline staff: view catalog and create draft sales orders"
+    },
+    {
+      "name": "$XSAPPNAME.SalesManager",
+      "description": "Sales management: full CRUD authority and confirm orders"
+    }
+  ],
   "attributes": [],
-  "role-templates": []
+  "role-templates": [
+    {
+      "name": "SalesRepresentative",
+      "description": "Sales Representative Role Template",
+      "scope-references": [
+        "$XSAPPNAME.SalesRepresentative"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "SalesManager",
+      "description": "Sales Manager Role Template",
+      "scope-references": [
+        "$XSAPPNAME.SalesManager"
+      ],
+      "attribute-references": []
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "SalesRepresentative",
+      "description": "Sales Representative Role Collection",
+      "role-template-references": [
+        "$XSAPPNAME.SalesRepresentative"
+      ]
+    },
+    {
+      "name": "SalesManager",
+      "description": "Sales Manager Role Collection",
+      "role-template-references": [
+        "$XSAPPNAME.SalesManager"
+      ]
+    }
+  ]
 }

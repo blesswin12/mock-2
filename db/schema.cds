@@ -76,7 +76,6 @@ entity SalesOrders : cuid, managed {
     @mandatory
     orderNumber      : String(30) not null;
 
-    @mandatory
     orderDate        : Date default $now;
 
     deliveryDate     : Date;
