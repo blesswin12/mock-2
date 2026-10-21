@@ -46,7 +46,7 @@ module.exports = cds.service.impl(function () {
         // If CustomerID is present (CREATE or customer update), validate it
         let Customer;
         if (CustomerID) {
-            const Customer = await cds.tx(req).run(
+            Customer = await cds.tx(req).run(
                 SELECT.one.from('sales.Customers').where({
                     ID: CustomerID
                 })
