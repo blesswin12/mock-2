@@ -1,5 +1,5 @@
 {
-  "name": "mock-2",
+  "name": "sales-mgmt",
   "version": "1.0.0",
   "description": "SAP CAP Practical Mock Exam 02 - Sales & Customer Order Fulfillment",
   "main": "index.js",
@@ -24,8 +24,8 @@
   "devDependencies": {
     "@cap-js/sqlite": "^3.1.2",
     "@sap/cds-dk": "^10.1.0",
-    "eslint": "^10.13.0",
-    "@sap/eslint-plugin-cds": "^4"
+    "@sap/eslint-plugin-cds": "^4",
+    "eslint": "^10.13.0"
   },
   "cds": {
     "requires": {
@@ -50,6 +50,12 @@
               "roles": []
             }
           }
+        },
+        "db": {
+          "kind": "sqlite",
+          "credentials": {
+            "url": "db.sqlite"
+          }
         }
       },
       "[production]": {
@@ -57,12 +63,8 @@
           "kind": "xsuaa"
         },
         "db": {
-          "kind": "hana",
-          "credentials": {}
+          "kind": "hana"
         }
-      },
-      "db": {
-        "kind": "sqlite"
       }
     }
   }

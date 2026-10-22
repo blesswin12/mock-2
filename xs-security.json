@@ -1,5 +1,5 @@
 {
-  "xsappname": "sales-mgmt",
+  "xsappname": "sales-mgmt-90713ee0trial-dev",
   "tenant-mode": "dedicated",
   "description": "Security profile for Sales & Customer Order Fulfillment",
   "scopes": [
@@ -11,6 +11,10 @@
       "name": "$XSAPPNAME.SalesManager",
       "description": "Sales management: full CRUD authority and confirm orders"
     }
+  ],
+  "authorities": [
+    "$XSAPPNAME.SalesRepresentative",
+    "$XSAPPNAME.SalesManager"
   ],
   "attributes": [],
   "role-templates": [
